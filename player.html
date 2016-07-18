@@ -5,60 +5,67 @@
     <title>Periodismo Modelado Player</title>
     <meta name="description" content="">
      <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
-  <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
     <!-- Drop in another component and use it from markup. -->
-    <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js"></script>
-   
+    <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js">
+    </script>
+     <script src="https://mozilla.github.io/nunjucks/files/nunjucks.min.js">
+    </script>
   </head>
   <body>
     <a-scene>
-     <a-assets>
-        <a-asset-item id="model" src="model.dae">
-        <audio id="fernandez-00" src="audios/00-Fernandez.mp3">
-        <script id="movements" type="text/x-nunjucks-template">
-          
-    </script>
-      </a-assets>
-      <a-entity position="0 0 0">
-        <a-collada-model src="#model"></a-collada-model>
-      
-     
-       <!-- Behold, the power of components. -->
-      <a-entity template="src: #movements">
-    </a-entity>
-  
-    <a-entity id="player" rotation="0 0 0" position="33 33 22">
-
-             <a-camera  id="camera" camera look-controls wasd-controls >
-               <a-entity  sound="src: audios/00-Fernandez.mp3; autoplay: true">
-  </a-entity>
-             <a-animation begin="3000" dur="11000" easing="linear" attribute="position" from="33 33 22" to="7 -32 -5"></a-animation>
-                       <a-animation begin="14000" dur="10000" easing="linear" attribute="position" from="7 -32 -5" to="-13 -32 -10"></a-animation>
-                       <a-animation begin="24000" dur="8000" easing="linear" attribute="position" from="-13 -32 -10" to="-21 -31.5 -10"></a-animation>
-                        <a-animation begin="32000" dur="9000" easing="linear" attribute="position" from="-21 -31.5 -10" to="-25 -30 -9.8"></a-animation>
-       </a-camera>
-      </a-entity>
- 
-
-       
-    </a-entity>
-     <a-sky src="sky.jpg" opacity="0">
-
-     
-   </a-sky>
     </a-scene>
     <script>
-    // var cam = document.querySelector('[camera]');
-    // cam.addEventListener('componentchanged', function (evt) {
-    //     if (evt.detail.name === 'position') {
-    //       console.log('Position went from', evt.detail.oldData, 'to', evt.detail.newData);
-    //     }
-    //   });
-    // //      if (evt.detail.name === 'rotation') {
-    // //       console.log('Rotation went from', evt.detail.oldData, 'to', evt.detail.newData);
-    // //      }
-    // //   });
 
+
+    var PMObject = {
+      model:'model.dae',
+      startsIn:"33 33 22",
+      checkpoints:[
+        
+        {
+          begin:3000,
+          dur:8000,
+          audio:'audios/00-Fernandez.mp3',
+          from:"53 44 22" ,
+          to:"30 2 10"
+
+        },
+        {
+          begin:11000,
+          dur:10000,
+          from:"30 2 10",
+          to:"22 2 10"
+        },
+
+        // {
+        //   begin:24000,
+        //   dur:8000,
+        //   from:"-13 -32 -10",
+        //   to:"-21 -31.5 -10"
+        // },{
+        //   begin:32000,
+        //   dur:9000,
+        //   from:"-21 -31.5 -10",
+        //   to:"-25 -30 -9.8"
+        // }
+      ]
+    };
+    
+
+      // Fetch the external template.
+      var scene = document.querySelector('a-scene');
+      var request = new XMLHttpRequest();
+      request.addEventListener('load', treeLoaded);
+      request.open('GET', 'mainPM.template');
+      request.send();
+      function treeLoaded () {
+        // Compile the fetched template.
+        var treeTemplateStr = request.response;
+        var treeTemplate = nunjucks.compile(treeTemplateStr);
+        var treeEntityStr = treeTemplate.render(PMObject);
+        scene.insertAdjacentHTML('beforeend', treeEntityStr);
+      }
     </script>
   </body>
 
