@@ -22,7 +22,7 @@
       model:'model.dae',
       startsIn:"33 33 22",
       checkpoints:[
-        
+
         {
           begin:3000,
           dur:8000,
@@ -51,7 +51,7 @@
         // }
       ]
     };
-    
+
 
       // Fetch the external template.
       var scene = document.querySelector('a-scene');
@@ -65,9 +65,11 @@
         var treeTemplate = nunjucks.compile(treeTemplateStr);
         var treeEntityStr = treeTemplate.render(PMObject);
         scene.insertAdjacentHTML('beforeend', treeEntityStr);
+        document.addEventListener('keypress', function(evt) {
+          console.log('apreto', evt.which);
+        }, true);
       }
     </script>
   </body>
 
 </html>
-
