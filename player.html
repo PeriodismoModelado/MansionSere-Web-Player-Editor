@@ -37,18 +37,6 @@
           from:"30 2 10",
           to:"22 2 10"
         },
-
-        // {
-        //   begin:24000,
-        //   dur:8000,
-        //   from:"-13 -32 -10",
-        //   to:"-21 -31.5 -10"
-        // },{
-        //   begin:32000,
-        //   dur:9000,
-        //   from:"-21 -31.5 -10",
-        //   to:"-25 -30 -9.8"
-        // }
       ]
     };
 
@@ -57,7 +45,7 @@
       var scene = document.querySelector('a-scene');
       var request = new XMLHttpRequest();
       request.addEventListener('load', treeLoaded);
-      request.open('GET', 'mainPM.template');
+      request.open('GET', 'PM.main.template');
       request.send();
       function treeLoaded () {
         // Compile the fetched template.
@@ -65,9 +53,7 @@
         var treeTemplate = nunjucks.compile(treeTemplateStr);
         var treeEntityStr = treeTemplate.render(PMObject);
         scene.insertAdjacentHTML('beforeend', treeEntityStr);
-        document.addEventListener('keypress', function(evt) {
-          console.log('apreto', evt.which);
-        }, true);
+      
       }
     </script>
   </body>

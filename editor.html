@@ -20,14 +20,37 @@
         </a-entity>
       </a-scene>
     <script>
-             
-    var scene = document.querySelector('a-scene');
-    var entity = scene.querySelector('#camera');
-    scene.addEventListener('loaded', function() {
-      var keyboardControls = entity.components['keyboard-controls'];
-      console.log(keyboardControls.listeners.keydown);
-      
-    });
+    var key = 'PM-Session';
+    var request = new XMLHttpRequest();
+    var pmSession = localStorage.getItem(key);
+    if (!pmSession){
+      var request = new XMLHttpRequest();
+      request.addEventListener('load', onSessionLoaded);
+      request.open('GET', 'PM.session.example.json');
+      request.send();
+      var onSessionLoaded = function(){
+        // Compile the fetched template.
+        var treeTemplateStr = request.response;
+        console.log(treeTemplateStr);
+      }
+    }else {
+      console.log('new session!');
+    }
+
+    
+    var saveSession= function(){
+      // Put the object into storage
+      localStorage.setItem(key, JSON.stringify(testObject));
+    } 
+    var sceneEl = document.querySelector('a-scene');
+    var entity = sceneEl.querySelector('#camera');
+
+     document.addEventListener('keypress', function(evt) {
+          if (evt.which == 32){
+            //save position from.
+            alert('posicion:'+ entity.getAttribute('position').x);
+          }
+        }, true);
     
     </script>
   </body>
