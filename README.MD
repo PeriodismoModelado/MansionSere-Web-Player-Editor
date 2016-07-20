@@ -1,6 +1,16 @@
 
 # Periodismo Modelado Web Player
 
+Periodismo Modelado provee un framework que facilita la construcción de historias navegables en mundos de realidad virtual a través de la definición de 4 componentes:
+- Modelo 3d
+- Puntos de Interes
+- Tracks de Audio 
+- Transiciones entre Puntos.
+
+El Modelo 3d provee un lugar físico donde se van a ubicar distintos puntos de interés. Cada uno de ellos tendrá un tiempo de recorrido.
+Cuando la experiencia inicia, una cámara recorre el modelo 3d pasando punto por punto tomando el delay, la duración y reproduciendo el audio una vez finalizado el delay.
+Una vez finalizada la lista de puntos, se procede a la finalización de la experiencia.
+
 
 
 #¿Qué Tecnologias?
@@ -48,6 +58,7 @@ Dirección: `http://localhost:8080`
 ###Editor 
 -Add for each checkpoint a url for an audio file.
 -Save checkpoints in localstorage.
+
 ###Player  
 -When a checkpoint animation is reproduce, it should also reproduce the audioa assigned.
 
@@ -62,8 +73,10 @@ Dirección: `http://localhost:8080`
 ##v0.4
 ###Architecture
 - Migrate to node/express + mongo
+
 ###Editor
 - Save experience in mongo.
+
 ###Player
 - Load from backend using ID and generate outside frontend.
 
