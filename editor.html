@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Periodismo Modelado Player</title>
+    <meta name="description" content="">
+     <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+      <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v1.17.0/dist/aframe-extras.min.js"></script>
+
+    
+  </head>
+  <body>
+    <a-scene>
+      <a-entity position="0 0 0">
+          <a-collada-model src="model.dae"></a-collada-model>
+        </a-entity>
+        <a-entity id="player">
+          <a-camera id="camera"  keyboard-controls position="0 10 10">
+          </a-camera>
+        </a-entity>
+      </a-scene>
+    <script>
+             
+    var scene = document.querySelector('a-scene');
+    var entity = scene.querySelector('#camera');
+    scene.addEventListener('loaded', function() {
+      var keyboardControls = entity.components['keyboard-controls'];
+      console.log(keyboardControls.listeners.keydown);
+      
+    });
+    
+    </script>
+  </body>
+
+</html>
+
