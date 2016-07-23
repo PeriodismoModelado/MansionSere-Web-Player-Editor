@@ -12,5 +12,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "material-design-icons": "~2.2.3",
+    "angular": "^1.4.0",
+    "angular-route": "^1.4.0"
+  }
 }

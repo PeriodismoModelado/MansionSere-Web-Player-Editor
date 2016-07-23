@@ -4,60 +4,39 @@
     <meta charset="utf-8">
     <title>Periodismo Modelado Player</title>
     <meta name="description" content="">
-     <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
-      <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v1.17.0/dist/aframe-extras.min.js"></script>
+    <script src="/bower_components/material-design-lite/material.min.js"></script>
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v1.17.0/dist/aframe-extras.min.js"></script>
 
 
+    <link rel="stylesheet" type="text/css" href="/bower_components/material-design-lite/material.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/editor.css">
+    
   </head>
   <body>
     <a-scene>
       <a-entity position="0 0 0">
-          <a-collada-model src="model.dae"></a-collada-model>
+          <a-collada-model src="/models/Sere.dae"></a-collada-model>
         </a-entity>
         <a-entity id="player">
           <a-camera id="camera"  keyboard-controls position="0 10 10">
           </a-camera>
         </a-entity>
       </a-scene>
-    <script>
-    var key = 'PM-Session';
-    var request = new XMLHttpRequest();
-    var pmSession = localStorage.getItem(key);
-    if (!pmSession){
-      var request = new XMLHttpRequest();
-      request.addEventListener('load', onSessionLoaded);
-      request.open('GET', 'PM.session.example.json');
-      request.send();
-      var onSessionLoaded = function(){
-        // Compile the fetched template.
-        var treeTemplateStr = request.response;
-        console.log(treeTemplateStr);
-      }
-    }else {
-      console.log('new session!');
-    }
+      <main ng-app="pmEditorApp">
+        <div ng-view="">
+        </div>
+      </main>
 
+    <script src="bower_components/angular/angular.js"></script>
+     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+   
+    <script src="/scripts/editor/app.js"></script>
+    <script src="/scripts/editor/controllers/home.js"></script>
+    
+    <script src="/scripts/editor/main.js"></script>
 
-    var saveSession= function(){
-      // Put the object into storage
-      localStorage.setItem(key, JSON.stringify(testObject));
-    }
-    var sceneEl = document.querySelector('a-scene');
-    var entity = sceneEl.querySelector('#camera');
-
-    document.addEventListener('keypress', function(evt) {
-       switch (evt.which) {
-       case 32:
-         alert('posicion:'+ entity.getAttribute('position').x);
-         break;
-       case 13:
-         var axis = entity.components['wasd-controls'].data.wsAxis;
-         entity.components['wasd-controls'].data.wsAxis = axis === 'z' ? 'y' : 'z'
-         break;
-       }
-    }, true);
-
-    </script>
   </body>
 
 </html>
