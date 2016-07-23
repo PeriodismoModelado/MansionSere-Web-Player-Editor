@@ -1,0 +1,9 @@
+canvas{
+	width: 75% !important;
+	max-width: 75%;
+}
+main{
+	width: 25%;
+	max-width: 25%;
+	float: right;
+}
