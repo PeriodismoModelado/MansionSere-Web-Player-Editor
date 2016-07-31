@@ -20,13 +20,18 @@ var saveSession= function(){
   // Put the object into storage
   localStorage.setItem(key, JSON.stringify(testObject));
 };
-var sceneEl = document.querySelector('a-scene');
-var entity = sceneEl.querySelector('#camera');
+
 
 document.addEventListener('keypress', function(evt) {
+
+
+  var sceneEl = document.querySelector('a-scene');
+  var entity = sceneEl.querySelector('#camera');
+
+
    switch (evt.which) {
    case 32:
-     alert('posicion:'+ entity.getAttribute('position').x);
+     submitPosition(entity.getAttribute('position'));
      break;
    case 13:
      var axis = entity.components['wasd-controls'].data.wsAxis;
@@ -36,6 +41,13 @@ document.addEventListener('keypress', function(evt) {
 }, true);
 
 
+
+var submitPosition = function(position){
+  var v  = document.getElementById('view');
+  var scope =angular.element(v).scope();
+  scope.saveCheckpoint(position);
+  scope.$apply();
+};
 
 var reloadScene = function(PMObject){
 
