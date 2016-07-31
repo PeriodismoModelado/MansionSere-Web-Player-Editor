@@ -16,10 +16,8 @@
     <a-scene>
     </a-scene>
     <script>
-
-
     var PMObject = {
-      model:'Sere.dae',
+      model:'/models/model.dae',
       startsIn:"33 33 22",
       checkpoints:[
 
@@ -45,7 +43,7 @@
       var scene = document.querySelector('a-scene');
       var request = new XMLHttpRequest();
       request.addEventListener('load', treeLoaded);
-      request.open('GET', 'PM.main.template');
+      request.open('GET', '/scripts/PM.main.template');
       request.send();
       function treeLoaded () {
         // Compile the fetched template.

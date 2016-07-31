@@ -35,3 +35,22 @@ document.addEventListener('keypress', function(evt) {
    }
 }, true);
 
+
+
+var reloadScene = function(PMObject){
+
+      // Fetch the external template.
+      var scene = document.querySelector('a-scene');
+      var request = new XMLHttpRequest();
+      request.addEventListener('load', treeLoaded);
+      request.open('GET', '/scripts/PM.main.template');
+      request.send();
+      function treeLoaded () {
+        // Compile the fetched template.
+        var treeTemplateStr = request.response;
+        var treeTemplate = nunjucks.compile(treeTemplateStr);
+        var treeEntityStr = treeTemplate.render(PMObject);
+        scene.insertAdjacentHTML('beforeend', treeEntityStr);
+      
+      }
+};

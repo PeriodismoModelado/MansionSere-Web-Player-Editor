@@ -6,8 +6,12 @@
     <meta name="description" content="">
     <script src="/bower_components/material-design-lite/material.min.js"></script>
     <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v1.17.0/dist/aframe-extras.min.js"></script>
-
+    <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+    <!-- Drop in another component and use it from markup. -->
+    <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js">
+    </script>
+     <script src="https://mozilla.github.io/nunjucks/files/nunjucks.min.js">
+    </script>
 
     <link rel="stylesheet" type="text/css" href="/bower_components/material-design-lite/material.min.css">
     <link rel="stylesheet" type="text/css" href="/css/editor.css">
@@ -15,15 +19,8 @@
   </head>
   <body>
     <a-scene>
-      <a-entity position="0 0 0">
-          <a-collada-model src="/models/Sere.dae"></a-collada-model>
-        </a-entity>
-        <a-entity id="player">
-          <a-camera id="camera"  keyboard-controls position="0 10 10">
-          </a-camera>
-        </a-entity>
-      </a-scene>
-      <main ng-app="pmEditorApp">
+    </a-scene>
+    <main ng-app="pmEditorApp">
         <div ng-view="">
         </div>
       </main>

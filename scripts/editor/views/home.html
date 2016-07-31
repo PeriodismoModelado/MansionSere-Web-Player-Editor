@@ -1,1 +1,23 @@
 <h1> Hola </h1>
+
+
+<h3> Bienvenido! </h3>
+
+
+<h4> Modelo 3d </h4>
+<input type="search" ng-model="model"/>
+<button ng-click="saveModel()">Actualizar</button>
+
+
+<h4> CheckPoints </h4>
+<ul>
+	<li ng-repeat="cp in checkpoints">
+		<h5>{{$index}}</h5>
+		<strong>{{cp.pos}}</strong>
+		<p>{{cp.text}}</p>
+
+	</li>
+
+<h4> Previsualizar </h4>
+
+<button ng-click="saveModel">Actualizar</button>

@@ -10,5 +10,24 @@
 angular.module('pmEditorApp')
   .controller('HomeCtrl', function ($scope,$timeout,$document,$http) {
 
-    alert('a');
+  	$scope.checkpoints = [];
+    $scope.saveCheckpoint = function(p){
+    	$scope.checkpoints.push({
+    		pos:p,
+    		text:'',
+    	});
+    };
+    $scope.saveModel = function(){
+    	console.log($scope.model);
+    	$scope.PMObject.model = $scope.model;
+    	//Reload experience (?)
+    	reloadScene($scope.PMObject);
+    }
+
+
+    $scope.PMObject = {
+      model:'/models/model.dae',
+      startsIn:"33 33 22",
+      checkpoints:[]
+    };
 });
