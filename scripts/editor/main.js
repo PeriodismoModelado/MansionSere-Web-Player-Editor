@@ -26,7 +26,7 @@ document.addEventListener('keypress', function(evt) {
 
 
   var sceneEl = document.querySelector('a-scene');
-  var entity = sceneEl.querySelector('#camera');
+  var entity = sceneEl.querySelector('#pm-camera');
 
 
    switch (evt.which) {
@@ -50,7 +50,6 @@ var submitPosition = function(position){
 };
 
 var reloadScene = function(PMObject){
-
       // Fetch the external template.
       var scene = document.querySelector('a-scene');
       var request = new XMLHttpRequest();
@@ -58,6 +57,7 @@ var reloadScene = function(PMObject){
       request.open('GET', '/scripts/PM.main.template');
       request.send();
       function treeLoaded () {
+        angular.element(document.getElementById('pm-template')).remove()
         // Compile the fetched template.
         var treeTemplateStr = request.response;
         var treeTemplate = nunjucks.compile(treeTemplateStr);
@@ -65,4 +65,11 @@ var reloadScene = function(PMObject){
         scene.insertAdjacentHTML('beforeend', treeEntityStr);
       
       }
+};
+
+
+
+var getPosAsString = function(pos){
+  console.log(pos);
+  return "" + pos.x + " " + pos.y + " " + pos.z;
 };

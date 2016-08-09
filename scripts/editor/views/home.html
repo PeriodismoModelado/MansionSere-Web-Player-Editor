@@ -1,13 +1,14 @@
-<h1> Hola </h1>
-
-
-<h3> Bienvenido! </h3>
-
+<button ng-click="saveExperience()">Recargar</button>
+<button ng-click="downloadJSON()">Download</button>
 
 <h4> Modelo 3d </h4>
 <input type="search" ng-model="model"/>
 <button ng-click="saveModel()">Actualizar</button>
 
+<h4> Initial Pos </h4>
+<input type="search" ng-model="startsIn.x" placeholder="X">
+<input type="search" ng-model="startsIn.y" placeholder="Y">
+<input type="search" ng-model="startsIn.z" placeholder="Z">
 
 <h4> CheckPoints </h4>
 <ul>
@@ -18,6 +19,7 @@
 
 	</li>
 
+</ul>
 <h4> Previsualizar </h4>
 
-<button ng-click="saveModel">Actualizar</button>
+
