@@ -1,25 +1,40 @@
-<button ng-click="saveExperience()">Recargar</button>
-<button ng-click="downloadJSON()">Download</button>
-
-<h4> Modelo 3d </h4>
-<input type="search" ng-model="model"/>
+<h4> PM Editor </h4>
+<h5>1. Modelo 3d </h5>
+<input type="search" placeholder="Escribi la URL de tu Modelo DAE " ng-model="model"/>
 <button ng-click="saveModel()">Actualizar</button>
 
-<h4> Initial Pos </h4>
-<input type="search" ng-model="startsIn.x" placeholder="X">
-<input type="search" ng-model="startsIn.y" placeholder="Y">
-<input type="search" ng-model="startsIn.z" placeholder="Z">
+<h4> 2. Posicion Inicial</h4>
+Elegi donde empieza.
+<div class="row">
+        <div class="input-field col s12">
+          <input placeholder="X" id="first_name"  ng-model="startsIn.x" type="text" class="validate">
+          
+        </div>
+        <div class="input-field col s12">
+          <input placeholder="Y" id="first_name"  ng-model="startsIn.y" type="text" class="validate">
+          
+        </div>
+        <div class="input-field col s12">
+          <input placeholder="Z"  ng-model="startsIn.z" id="first_name" type="text" class="validate">
+         
+        </div>
+</div>
 
-<h4> CheckPoints </h4>
+<h4>3. Punto de Interes </h4>
+Elegi los puntos de interes en tu modelo.
+Para navegarlos usa<strong> WASD</strong> y cambia W/S con <strong>ENTER</strong> para moverte hacia arriba y abajo.
+Para elegirlo presiona <strong> SPACE </strong>
 <ul>
 	<li ng-repeat="cp in checkpoints">
 		<h5>{{$index}}</h5>
-		<strong>{{cp.pos}}</strong>
-		<p>{{cp.text}}</p>
-
+		<p><strong>X</strong>{{cp.pos.x}}</p>
+		<p><strong>Y</strong>{{cp.pos.y}}</p>
+		<p><strong>Z</strong>{{cp.pos.z}}</p>
 	</li>
 
 </ul>
-<h4> Previsualizar </h4>
+<h4> 4. Previsualizar </h4>
+<h5><button ng-click="saveExperience()">Recargar el modelo</button> <button ng-click="downloadJSON()">Bajar JSON.</button></h5>
+
 
 

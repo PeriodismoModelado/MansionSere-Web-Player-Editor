@@ -29,15 +29,21 @@ angular.module('pmEditorApp')
     $scope.saveExperience = function(){
     	var pre;
     	var items = [];
+        var average = 8000;
+        var init = 3000;
+        var prev =0;
     	for (var i = 0; i < $scope.checkpoints.length; i++) {	
 			var current = $scope.checkpoints[i];
 			if (pre){
-				items.push({
-		          begin:3000,
-		          dur:8000,
-		          from: getPosAsString(pre.pos),
-		          to: getPosAsString(current.pos),
-		        });
+                var item = {
+                  begin:init + prev,
+                  dur:average,
+                  from: getPosAsString(pre.pos),
+                  to: getPosAsString(current.pos),
+                };
+				items.push(item);
+                prev = item.begin + item.dur;
+                init = 0 ;
 			}
 			pre = current;
     	};
