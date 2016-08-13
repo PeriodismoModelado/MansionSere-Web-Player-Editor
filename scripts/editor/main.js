@@ -54,7 +54,7 @@ var reloadScene = function(PMObject){
       var scene = document.querySelector('a-scene');
       var request = new XMLHttpRequest();
       request.addEventListener('load', treeLoaded);
-      request.open('GET', '/scripts/PM.main.template');
+      request.open('GET', 'scripts/PM.main.template');
       request.send();
       function treeLoaded () {
         angular.element(document.getElementById('pm-template')).remove()

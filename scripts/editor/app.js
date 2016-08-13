@@ -15,7 +15,7 @@ angular.module('pmEditorApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/scripts/editor/views/home.html',
+        templateUrl: 'scripts/editor/views/home.html',
         controller: 'HomeCtrl',
         controllerAs: 'home'
       })
