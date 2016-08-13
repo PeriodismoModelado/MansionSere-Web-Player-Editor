@@ -1,0 +1,26 @@
+<a-entity id="pm-template">
+	<a-entity position="0 0 0" scale="1.2 1.2 1.2">
+	        <a-collada-model src="{{ model }}"></a-collada-model>
+	</a-entity>
+	<a-entity id="player">
+		<a-camera id="pm-camera"  position="{{ startsIn }}">
+			{% for checkpoint in checkpoints %}
+			   <a-animation begin="{{ checkpoint.begin }}" dur="{{ checkpoint.dur }}" easing="linear" attribute="position" 
+			   from="{{ checkpoint.from }}"
+			   to="{{ checkpoint.to }}">
+			   </a-animation>
+			   {% if checkpoint.audio %}
+				  <a-entity  sound="src: {{checkpoint.audio}}; autoplay: true">
+				  </a-entity>
+				{% endif %}
+			 {% endfor %}
+
+
+		</a-camera>
+	</a-entity>
+	      <a-plane color="#CAAD8C" height="500" width="500" shader="flat"
+	               position="0 -10 0" 
+	               rotation="-90 0 0">
+	               </a-plane>
+	      <a-sky color="#3EC1D3"></a-sky>
+</a-entity>

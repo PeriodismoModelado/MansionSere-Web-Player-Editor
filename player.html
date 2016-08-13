@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Periodismo Modelado Player</title>
+    <meta name="description" content="">
+     <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+    <!-- Drop in another component and use it from markup. -->
+    <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js">
+    </script>
+     <script src="https://mozilla.github.io/nunjucks/files/nunjucks.min.js">
+    </script>
+  </head>
+  <body>
+    <a-scene>
+    </a-scene>
+    <script>
+    var PMObject = {
+      model:'/models/model.dae',
+      startsIn:"33 33 22",
+      checkpoints:[
+
+        {
+          begin:3000,
+          dur:8000,
+          audio:'audios/00-Fernandez.mp3',
+          from:"53 44 22" ,
+          to:"30 2 10"
+
+        },
+        {
+          begin:11000,
+          dur:10000,
+          from:"30 2 10",
+          to:"22 2 10"
+        },
+      ]
+    };
+
+
+      // Fetch the external template.
+      var scene = document.querySelector('a-scene');
+      var request = new XMLHttpRequest();
+      request.addEventListener('load', treeLoaded);
+      request.open('GET', '/scripts/PM.main.template');
+      request.send();
+      function treeLoaded () {
+        // Compile the fetched template.
+        var treeTemplateStr = request.response;
+        var treeTemplate = nunjucks.compile(treeTemplateStr);
+        var treeEntityStr = treeTemplate.render(PMObject);
+        scene.insertAdjacentHTML('beforeend', treeEntityStr);
+      
+      }
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "Web-Player-Editor",
+  "version": "0.0.0",
+  "homepage": "https://github.com/PeriodismoModelado/Web-Player-Editor",
+  "authors": [
+    "tinchoforever <tinchoforever@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "material-design-icons": "~2.2.3",
+    "angular": "^1.4.0",
+    "angular-route": "^1.4.0",
+    "angular-file-saver": "~1.1.2"
+  }
+}

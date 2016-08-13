@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Periodismo Modelado Player</title>
+    <meta name="description" content="">
+    <script src="/bower_components/material-design-lite/material.min.js"></script>
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+    <!-- Drop in another component and use it from markup. -->
+    <script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js">
+    </script>
+     <script src="https://mozilla.github.io/nunjucks/files/nunjucks.min.js">
+    </script>
+ 
+
+    <link rel="stylesheet" type="text/css" href="/bower_components/material-design-lite/material.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/editor.css">
+    
+  </head>
+  <body>
+    <a-scene>
+    </a-scene>
+    <main ng-app="pmEditorApp">
+        <div id="view" ng-view="">
+        </div>
+      </main>
+
+    <script src="bower_components/angular/angular.js"></script>
+     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+       <script src="/bower_components/angular-file-saver/dist/angular-file-saver.bundle.min.js">
+    </script>
+    
+    <script src="/scripts/editor/app.js"></script>
+    <script src="/scripts/editor/controllers/home.js"></script>
+    
+    <script src="/scripts/editor/main.js"></script>
+
+  </body>
+
+</html>
