@@ -34,6 +34,16 @@ angular.module('pmEditorApp')
             reloadScene($scope.PMObject);
             $scope.idReady = true;
             $scope.storyID = $scope.savedStoryID;
+
+            $scope.checkpoints = [];
+            for (var i = 0; i < $scope.PMObject.checkpoints.length; i++) {
+                var check = $scope.PMObject.checkpoints[i];
+                $scope.checkpoints.push({
+                    pos:getStringAsPos(check.from),
+                    text:'',
+                });
+
+            };
             localStorage.setItem(key+'latest',$scope.storyID);
             //DRDZLRE4DC99LKK
         }
