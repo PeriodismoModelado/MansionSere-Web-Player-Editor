@@ -1,40 +1,56 @@
-<h4> PM Editor </h4>
-<h5>1. Modelo 3d </h5>
-<input type="search" placeholder="Escribi la URL de tu Modelo DAE " ng-model="model"/>
-<button ng-click="saveModel()">Actualizar</button>
+<h4> PM Editor 
+  <strong ng-cloak ng-show="idReady"><small>StoryId 
+  
+  <a ng-click="savePreview()" href="">{{storyID}}</a> </small></strong></h4>
+  <div ng-hide="idReady">
+  <h5> ¿Queres armar una historia nueva? </h5>
+      <button ng-click="createNewStory()">Crear Nueva Historia</button>
+  <h5> ¿Tenes una guardada? </h5>
+   <div class="input-field col s12">
+    <h6 ng-cloak ng-show="noId">El ID parece no existir, verificalo.</h6>
+          <input placeholder="Escribi el ID"  ng-model="savedStoryID" type="text" class="validate">
+          <button ng-click="loadStory()">Cargar</button>
+        </div>
+  </div>
 
-<h4> 2. Posicion Inicial</h4>
-Elegi donde empieza.
-<div class="row">
-        <div class="input-field col s12">
-          <input placeholder="X" id="first_name"  ng-model="startsIn.x" type="text" class="validate">
-          
-        </div>
-        <div class="input-field col s12">
-          <input placeholder="Y" id="first_name"  ng-model="startsIn.y" type="text" class="validate">
-          
-        </div>
-        <div class="input-field col s12">
-          <input placeholder="Z"  ng-model="startsIn.z" id="first_name" type="text" class="validate">
-         
-        </div>
+
+<div ng-cloak ng-show="idReady">
+  <h5>1. Modelo 3d </h5>
+  <input type="search" placeholder="Escribi la URL de tu Modelo DAE " ng-model="model"/>
+  <button ng-click="saveModel()">Actualizar</button>
+
+  <h4> 2. Posicion Inicial</h4>
+  Elegi donde empieza.
+  <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="X" id="first_name"  ng-model="startsIn.x" type="text" class="validate">
+            
+          </div>
+          <div class="input-field col s12">
+            <input placeholder="Y" id="first_name"  ng-model="startsIn.y" type="text" class="validate">
+            
+          </div>
+          <div class="input-field col s12">
+            <input placeholder="Z"  ng-model="startsIn.z" id="first_name" type="text" class="validate">
+           
+          </div>
+  </div>
+
+  <h4>3. Punto de Interes </h4>
+  Elegi los puntos de interes en tu modelo.
+  Para navegarlos usa<strong> WASD</strong> y cambia W/S con <strong>ENTER</strong> para moverte hacia arriba y abajo.
+  Para elegirlo presiona <strong> SPACE </strong>
+  <ul>
+  	<li ng-repeat="cp in checkpoints">
+  		<h5>{{$index}}</h5>
+  		<p><strong>X</strong>{{cp.pos.x}}</p>
+  		<p><strong>Y</strong>{{cp.pos.y}}</p>
+  		<p><strong>Z</strong>{{cp.pos.z}}</p>
+  	</li>
+
+  </ul>
+  <h4> 4. Previsualizar </h4>
+  <h5><button ng-click="saveExperience()">Recargar el modelo</button> <button ng-click="downloadJSON()">Bajar JSON.</button></h5>
+
 </div>
-
-<h4>3. Punto de Interes </h4>
-Elegi los puntos de interes en tu modelo.
-Para navegarlos usa<strong> WASD</strong> y cambia W/S con <strong>ENTER</strong> para moverte hacia arriba y abajo.
-Para elegirlo presiona <strong> SPACE </strong>
-<ul>
-	<li ng-repeat="cp in checkpoints">
-		<h5>{{$index}}</h5>
-		<p><strong>X</strong>{{cp.pos.x}}</p>
-		<p><strong>Y</strong>{{cp.pos.y}}</p>
-		<p><strong>Z</strong>{{cp.pos.z}}</p>
-	</li>
-
-</ul>
-<h4> 4. Previsualizar </h4>
-<h5><button ng-click="saveExperience()">Recargar el modelo</button> <button ng-click="downloadJSON()">Bajar JSON.</button></h5>
-
-
 

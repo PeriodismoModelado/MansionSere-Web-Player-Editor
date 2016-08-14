@@ -18,48 +18,43 @@
     <a-scene>
     </a-scene>
     <script>
-    
-    var key = 'PM-Session';
-  
-  var start = function(){
-    if(window.location.hash) {
-      var storyId = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-      loadPM(storyId);
-       
-    } else {
-       window.location="/"
-    }
-  }
-  var loadPM = function (storyID){
-    var PMObject = loadPMObject(storyID);
-    loadScene(PMObject);
-  }
-  var loadPMObject =  function(storyID){
-    var PMObjectString = localStorage.getItem(key + storyID);
-    var PMObject = JSON.parse(PMObjectString);
-    return PMObject;
-  }
-  var loadScene = function(PMObject){
-    // Fetch the external template.
+    var PMObject = {
+      model:'/models/model.dae',
+      startsIn:"33 33 22",
+      checkpoints:[
+
+        {
+          begin:3000,
+          dur:8000,
+          audio:'audios/00-Fernandez.mp3',
+          from:"53 44 22" ,
+          to:"30 2 10"
+
+        },
+        {
+          begin:11000,
+          dur:10000,
+          from:"30 2 10",
+          to:"22 2 10"
+        },
+      ]
+    };
+
+
+      // Fetch the external template.
       var scene = document.querySelector('a-scene');
       var request = new XMLHttpRequest();
       request.addEventListener('load', treeLoaded);
       request.open('GET', '/scripts/PM.main.template');
       request.send();
-     function treeLoaded() {
+      function treeLoaded () {
         // Compile the fetched template.
         var treeTemplateStr = request.response;
         var treeTemplate = nunjucks.compile(treeTemplateStr);
         var treeEntityStr = treeTemplate.render(PMObject);
         scene.insertAdjacentHTML('beforeend', treeEntityStr);
       
-      };
-      
-    };
-    
-    start();
-
-      
+      }
     </script>
   </body>
 

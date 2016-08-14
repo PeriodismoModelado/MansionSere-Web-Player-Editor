@@ -1,25 +1,6 @@
 var key = 'PM-Session';
 var request = new XMLHttpRequest();
-var pmSession = localStorage.getItem(key);
-if (!pmSession){
-  var request = new XMLHttpRequest();
-  request.addEventListener('load', onSessionLoaded);
-  request.open('GET', '/scripts/PM.session.example.json');
-  request.send();
-  var onSessionLoaded = function(){
-    // Compile the fetched template.
-    var treeTemplateStr = request.response;
-    console.log(treeTemplateStr);
-  };
-}else {
-  console.log('new session!');
-}
 
-
-var saveSession= function(){
-  // Put the object into storage
-  localStorage.setItem(key, JSON.stringify(testObject));
-};
 
 
 document.addEventListener('keypress', function(evt) {
@@ -72,4 +53,26 @@ var reloadScene = function(PMObject){
 var getPosAsString = function(pos){
   console.log(pos);
   return "" + pos.x + " " + pos.y + " " + pos.z;
+};
+
+
+var getStringAsPos = function(str){
+  var res = str.split(" ");
+  var pos = {
+    x:res[0],
+    y:res[1],
+    z:res[2]
+  }
+  return pos;
+};
+
+var generateId = function()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    for( var i=0; i < 15; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 };

@@ -10,6 +10,36 @@
 angular.module('pmEditorApp')
   .controller('HomeCtrl', function ($scope,FileSaver, Blob,$timeout,$document,$http) {
 
+
+    var latest = localStorage.getItem(key+'latest');
+    if (latest){
+        $scope.savedStoryID = latest;
+    }
+    //DRDZLRE4DC99LKK
+    $scope.createNewStory = function(){
+         $scope.storyID = generateId();
+         $scope.idReady = true;
+    }
+
+    $scope.loadStory = function(){
+        
+
+         var pmSession = localStorage.getItem(key+ $scope.savedStoryID);
+        if (!pmSession){
+             $scope.noId = true;
+        }
+        else {
+            $scope.PMObject = JSON.parse(pmSession);
+            $scope.model= $scope.PMObject.model;
+            reloadScene($scope.PMObject);
+            $scope.idReady = true;
+            $scope.storyID = $scope.savedStoryID;
+            localStorage.setItem(key+'latest',$scope.storyID);
+            //DRDZLRE4DC99LKK
+        }
+    };
+
+
   	$scope.checkpoints = [];
     $scope.saveCheckpoint = function(p){
     	$scope.checkpoints.push({
@@ -52,10 +82,14 @@ angular.module('pmEditorApp')
     	reloadScene($scope.PMObject);
     };
     $scope.saveModel = function(){
-    	console.log($scope.model);
+    	
     	$scope.PMObject.model = $scope.model;
-    	//Reload experience (?)
+    	var pmString = JSON.stringify($scope.PMObject);
+        localStorage.setItem(key + $scope.storyID,pmString);
+        //Reload experience (?)
     	reloadScene($scope.PMObject);
+
+
     }
 
 
@@ -68,10 +102,22 @@ angular.module('pmEditorApp')
 
     $scope.downloadJSON = function() {
         var filename = "PM.Object.json";
-        var data = new Blob([JSON.stringify($scope.PMObject)], {
+        var pmString = JSON.stringify($scope.PMObject);
+        var data = new Blob([pmString], {
           type: "text/json;charset=utf-8"});
         FileSaver.saveAs(data, filename);
+        localStorage.setItem(key+'latest',$scope.storyID);
+        localStorage.setItem(key + $scope.storyID,pmString);
         
 
     };
+
+    $scope.savePreview = function(){
+        $scope.PMObject.model = $scope.model;
+        var pmString = JSON.stringify($scope.PMObject);
+        localStorage.setItem(key + $scope.storyID,pmString);
+        window.open("play.html#"+  $scope.storyID);
+        localStorage.setItem(key+'latest',$scope.storyID);
+    }
+
 });
