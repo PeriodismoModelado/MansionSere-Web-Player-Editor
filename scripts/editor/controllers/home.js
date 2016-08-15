@@ -8,7 +8,7 @@
  * Controller of the pmEditorApp
  */
 angular.module('pmEditorApp')
-  .controller('HomeCtrl', function ($scope,FileSaver, Blob,$timeout,$document,$http) {
+  .controller('HomeCtrl', function ($scope,FileSaver, ngAudio,Blob,$timeout,$document,$http) {
 
 
     var latest = localStorage.getItem(key+'latest');
@@ -49,7 +49,9 @@ angular.module('pmEditorApp')
         }
     };
 
-
+    $scope.loadAudio = function(item){
+        item.audio = ngAudio.load(item.audioURL); // returns NgAudioObject
+    }
   	$scope.checkpoints = [];
     $scope.saveCheckpoint = function(p){
     	$scope.checkpoints.push({

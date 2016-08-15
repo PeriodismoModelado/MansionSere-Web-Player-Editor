@@ -10,7 +10,8 @@
 angular.module('pmEditorApp', [
     'ngRoute',
     'ngSanitize',
-    'ngFileSaver'
+    'ngFileSaver',
+    'ngAudio'
   ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -46,6 +46,17 @@
   		<p><strong>X</strong>{{cp.pos.x}}</p>
   		<p><strong>Y</strong>{{cp.pos.y}}</p>
   		<p><strong>Z</strong>{{cp.pos.z}}</p>
+      <h6> Audio </h6>
+      <div class="input-field col s12">
+        <input placeholder="Url"  ng-model="cp.audioURL" type="text" >
+              <button ng-click='loadAudio(cp)'>Cargar</button>
+              <div ng-show="cp.audio">
+              <button ng-click='cp.audio.play()'>Play</button>
+             <button ng-click='cp.audio.pause()'>Pause</button>
+          <button ng-click='cp.audio.restart()'>Stop</button>
+         <button ng-click='cp.audio.muting = !cp.audio.muting'>Mute</button>
+        </div>
+      </div>
   	</li>
 
   </ul>
