@@ -38,10 +38,15 @@ angular.module('pmEditorApp')
             $scope.checkpoints = [];
             for (var i = 0; i < $scope.PMObject.checkpoints.length; i++) {
                 var check = $scope.PMObject.checkpoints[i];
-                $scope.checkpoints.push({
+                var cp = {
                     pos:getStringAsPos(check.from),
                     text:'',
-                });
+                };
+                if (check.audio){
+                    cp.audioURL = check.audio;
+                    cp.audio = ngAudio.load(check.audio);
+                }
+                $scope.checkpoints.push(cp);
 
             };
             localStorage.setItem(key+'latest',$scope.storyID);
@@ -50,7 +55,9 @@ angular.module('pmEditorApp')
     };
 
     $scope.loadAudio = function(item){
+
         item.audio = ngAudio.load(item.audioURL); // returns NgAudioObject
+        
     }
   	$scope.checkpoints = [];
     $scope.saveCheckpoint = function(p){
@@ -83,6 +90,13 @@ angular.module('pmEditorApp')
                   from: getPosAsString(pre.pos),
                   to: getPosAsString(current.pos),
                 };
+                //I have to play the sound of the previous because of the from to
+                if (pre.audio){
+                    //there is no error.
+                    if(!pre.audio.audio.error){
+                        item.audio = pre.audioURL;
+                    }
+                }
 				items.push(item);
                 prev = item.begin + item.dur;
                 init = 0 ;
