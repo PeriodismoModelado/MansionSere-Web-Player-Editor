@@ -52,10 +52,25 @@
         var treeTemplate = nunjucks.compile(treeTemplateStr);
         var treeEntityStr = treeTemplate.render(PMObject);
         scene.insertAdjacentHTML('beforeend', treeEntityStr);
-      
+         for (var i = 0; i < PMObject.checkpoints.length; i++) {
+          if (PMObject.checkpoints[i].audio){
+            createPlayerFor(PMObject.checkpoints[i].audioID);
+          }
+        }
       };
       
     };
+
+    var createPlayerFor = function(selector){
+      var playSelector = selector + 'Play';
+      var audioToPlay = document.querySelector(selector);
+      var playerAnimationTrigger = document.querySelector(playSelector);
+      var mainEventPlay = function(){
+        audioToPlay.emit('play');
+      };
+      playerAnimationTrigger.addEventListener('animationstart',mainEventPlay);
+    };
+
     
     start();
 

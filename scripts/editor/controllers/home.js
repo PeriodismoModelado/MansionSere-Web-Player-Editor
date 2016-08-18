@@ -44,6 +44,7 @@ angular.module('pmEditorApp')
                 };
                 if (check.audio){
                     cp.audioURL = check.audio;
+                    cp.audioID = check.audioID;
                     cp.audio = ngAudio.load(check.audio);
                 }
                 $scope.checkpoints.push(cp);
@@ -57,6 +58,7 @@ angular.module('pmEditorApp')
     $scope.loadAudio = function(item){
 
         item.audio = ngAudio.load(item.audioURL); // returns NgAudioObject
+        item.audioID =  generateId();
         
     }
   	$scope.checkpoints = [];
@@ -95,6 +97,7 @@ angular.module('pmEditorApp')
                     //there is no error.
                     if(!pre.audio.audio.error){
                         item.audio = pre.audioURL;
+                        item.audioID = pre.audioID;
                     }
                 }
 				items.push(item);

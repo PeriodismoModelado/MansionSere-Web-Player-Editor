@@ -31,6 +31,9 @@ var submitPosition = function(position){
 };
 
 var reloadScene = function(PMObject){
+
+    
+
       // Fetch the external template.
       var scene = document.querySelector('a-scene');
       var request = new XMLHttpRequest();
@@ -38,14 +41,33 @@ var reloadScene = function(PMObject){
       request.open('GET', 'scripts/PM.main.template');
       request.send();
       function treeLoaded () {
-        angular.element(document.getElementById('pm-template')).remove()
+        angular.element(document.getElementById('pm-template')).remove();
         // Compile the fetched template.
         var treeTemplateStr = request.response;
         var treeTemplate = nunjucks.compile(treeTemplateStr);
         var treeEntityStr = treeTemplate.render(PMObject);
         scene.insertAdjacentHTML('beforeend', treeEntityStr);
+
+        for (var i = 0; i < PMObject.checkpoints.length; i++) {
+          if (PMObject.checkpoints[i].audio){
+            //createPlayerFor(PMObject.checkpoints[i].audioID);
+          }
+        }
+          
       
       }
+};
+
+
+
+var createPlayerFor = function(selector){
+  var playSelector = selector + 'Play';
+  var audioToPlay = document.querySelector(selector);
+  var playerAnimationTrigger = document.querySelector(playSelector);
+  var mainEventPlay = function(){
+    audioToPlay.emit('play');
+  };
+  playerAnimationTrigger.addEventListener('animationstart',mainEventPlay);
 };
 
 
@@ -69,7 +91,7 @@ var getStringAsPos = function(str){
 var generateId = function()
 {
     var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     for( var i=0; i < 15; i++ )
         text += possible.charAt(Math.floor(Math.random() * possible.length));

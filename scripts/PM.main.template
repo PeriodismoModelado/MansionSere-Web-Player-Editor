@@ -5,15 +5,24 @@
 	<a-entity id="player">
 		<a-camera id="pm-camera"  position="{{ startsIn }}">
 			{% for checkpoint in checkpoints %}
-			   <a-animation begin="{{ checkpoint.begin }}" dur="{{ checkpoint.dur }}" easing="linear" attribute="position" 
-			   from="{{ checkpoint.from }}"
-			   to="{{ checkpoint.to }}">
-			   </a-animation>
 			   {% if checkpoint.audio %}
-				  <a-entity  sound="src: {{checkpoint.audio}}; autoplay: true">
-				  </a-entity>
+					<a-animation 
+					   id="{{checkpoint.audioID}}Play"
+					   begin="{{ checkpoint.begin }}" dur="{{ checkpoint.dur }}" easing="linear" attribute="position" 
+					   from="{{ checkpoint.from }}"
+					   to="{{ checkpoint.to }}">
+					   </a-animation>
+					  <a-entity id="{{checkpoint.audioID}}"  sound="src: {{checkpoint.audio}}; on:play;">
+				  {% else %}
+				   <a-animation 
+					   begin="{{ checkpoint.begin }}" dur="{{ checkpoint.dur }}" easing="linear" attribute="position" 
+					   from="{{ checkpoint.from }}"
+					   to="{{ checkpoint.to }}">
+					   </a-animation>
+
 				{% endif %}
 			 {% endfor %}
+	</a-entity>
 
 
 		</a-camera>
