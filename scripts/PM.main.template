@@ -11,8 +11,9 @@
 					   begin="{{ checkpoint.begin }}" dur="{{ checkpoint.dur }}" easing="linear" attribute="position" 
 					   from="{{ checkpoint.from }}"
 					   to="{{ checkpoint.to }}">
-					   </a-animation>
-					  <a-entity id="{{checkpoint.audioID}}"  sound="src: {{checkpoint.audio}}; on:play;">
+					 </a-animation>
+					<a-entity id="{{checkpoint.audioID}}"  sound="src: {{checkpoint.audio}}; on:playMe{{checkpoint.audioID}};">
+					  </a-entity>
 				  {% else %}
 				   <a-animation 
 					   begin="{{ checkpoint.begin }}" dur="{{ checkpoint.dur }}" easing="linear" attribute="position" 
@@ -22,9 +23,6 @@
 
 				{% endif %}
 			 {% endfor %}
-	</a-entity>
-
-
 		</a-camera>
 	</a-entity>
 	      <a-plane color="#CAAD8C" height="500" width="500" shader="flat"

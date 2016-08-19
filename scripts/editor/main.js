@@ -50,7 +50,7 @@ var reloadScene = function(PMObject){
 
         for (var i = 0; i < PMObject.checkpoints.length; i++) {
           if (PMObject.checkpoints[i].audio){
-            //createPlayerFor(PMObject.checkpoints[i].audioID);
+            createPlayerFor('#'PMObject.checkpoints[i].audioID);
           }
         }
           
