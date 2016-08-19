@@ -2,10 +2,8 @@
 <COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author>T1L</author>
       <authoring_tool>3dsMax 11 - Feeling ColladaMax v3.05B.</authoring_tool>
-      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=1;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=1;AnimStart=0;AnimEnd=3.33333;</comments>
-      <source_data>file:///C:/Documents%20and%20Settings/T1L/Desktop/tempMAX/B_ldm_parisTriumphArch_T3.max</source_data>
+     
     </contributor>
     <created>2011-03-28T19:02:35Z</created>
     <modified>2011-03-28T19:02:35Z</modified>
@@ -14,19 +12,19 @@
   </asset>
   <library_images>
     <image id="B_ldm_parisTriumphArch_T3_lm_L1.dds" name="B_ldm_parisTriumphArch_T3_lm_L1_tga">
-      <init_from>./B_ldm_parisTriumphArch_T3_lm_L1.dds</init_from>
+      <init_from>modeB_ldm_parisTriumphArch_T3_lm_L1.dds</init_from>
     </image>
     <image id="B_ldm_parisTriumphArch_T3_dif_L1.dds" name="B_ldm_parisTriumphArch_T3_dif_L1_tga">
-      <init_from>./B_ldm_parisTriumphArch_T3_dif_L1.dds</init_from>
+      <init_from>B_ldm_parisTriumphArch_T3_dif_L1.dds</init_from>
     </image>
     <image id="B_ldm_parisTriumphArch_T3_sp_L1.dds" name="B_ldm_parisTriumphArch_T3_sp_L1_tga">
-      <init_from>./B_ldm_parisTriumphArch_T3_sp_L1.dds</init_from>
+      <init_from>B_ldm_parisTriumphArch_T3_sp_L1.dds</init_from>
     </image>
     <image id="B_ldm_parisTriumphArch_T3_bp_L1.dds" name="B_ldm_parisTriumphArch_T3_bp_L1_tga">
-      <init_from>./B_ldm_parisTriumphArch_T3_bp_L1.dds</init_from>
+      <init_from>B_ldm_parisTriumphArch_T3_bp_L1.dds</init_from>
     </image>
     <image id="B_ldm_parisTriumphArch_T3_rf_L1.dds" name="B_ldm_parisTriumphArch_T3_rf_L1_tga">
-      <init_from>./B_ldm_parisTriumphArch_T3_rf_L1.dds</init_from>
+      <init_from>B_ldm_parisTriumphArch_T3_rf_L1.dds</init_from>
     </image>
   </library_images>
   <library_materials>
