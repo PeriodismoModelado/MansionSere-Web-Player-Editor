@@ -49,8 +49,8 @@ var reloadScene = function(PMObject){
         scene.insertAdjacentHTML('beforeend', treeEntityStr);
 
         for (var i = 0; i < PMObject.checkpoints.length; i++) {
-          if (PMObject.checkpoints[i].audio){
-            createPlayerFor('#'PMObject.checkpoints[i].audioID);
+         if (PMObject.checkpoints[i].audio){
+            createPlayerFor(PMObject.checkpoints[i].audioID);
           }
         }
           
@@ -61,14 +61,17 @@ var reloadScene = function(PMObject){
 
 
 var createPlayerFor = function(selector){
-  var playSelector = selector + 'Play';
-  var audioToPlay = document.querySelector(selector);
-  var playerAnimationTrigger = document.querySelector(playSelector);
-  var mainEventPlay = function(){
-    audioToPlay.emit('play');
-  };
-  playerAnimationTrigger.addEventListener('animationstart',mainEventPlay);
-};
+      var playSelector = selector + 'Play';
+      var audioToPlay = document.querySelector('#'+selector);
+      var playerAnimationTrigger = document.querySelector('#'+playSelector);
+      (function(pat, atp,sel){
+        pat.addEventListener('animationend',function(){
+          atp.emit('playMe' +sel);
+          console.log('playMe' +sel);
+        });
+      })(playerAnimationTrigger,audioToPlay,selector);
+    };
+
 
 
 
