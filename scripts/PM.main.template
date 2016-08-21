@@ -1,13 +1,14 @@
 <a-entity id="pm-template">
 	<a-entity position="0 0 0" scale="1.2 1.2 1.2">
+
 	        <a-collada-model src="{{ model }}"></a-collada-model>
 	</a-entity>
 	<a-entity id="player">
 		<a-camera id="pm-camera"  position="{{ startsIn }}">
 			{% for checkpoint in checkpoints %}
 			   {% if checkpoint.audio %}
+			   		<a-animation  id="{{checkpoint.audioID}}Play" begin="{{ checkpoint.begin }}"  dur="1" attribute="visibility" to="true"></a-animation>
 					<a-animation 
-					   id="{{checkpoint.audioID}}Play"
 					   begin="{{ checkpoint.begin }}" dur="{{ checkpoint.dur }}" easing="linear" attribute="position" 
 					   from="{{ checkpoint.from }}"
 					   to="{{ checkpoint.to }}">

@@ -36,7 +36,7 @@ angular.module('pmEditorApp')
             $scope.storyID = $scope.savedStoryID;
 
             $scope.checkpoints = [];
-            var nextAudio;
+          
             for (var i = 0; i < $scope.PMObject.checkpoints.length; i++) {
                 var check = $scope.PMObject.checkpoints[i];
                 var cp = {
@@ -44,19 +44,13 @@ angular.module('pmEditorApp')
                     text:'',
                 };
                 
-                if (nextAudio){
-                    cp.audioURL = nextAudio.audio;
-                    cp.audioID = nextAudio.audioID;
-                    cp.audio = ngAudio.load(nextAudio.audio);
-                }
-
                 if (check.audio){
-                    nextAudio = nextAudio;   
+                    cp.audioURL = check.audio;
+                    cp.audioID = check.audioID;
+                    cp.audio = ngAudio.load(check.audio);
                 }
-                else {
-                    nextAudio = undefined;
 
-                }
+               
                 $scope.checkpoints.push(cp);
 
             };
@@ -109,7 +103,7 @@ angular.module('pmEditorApp')
                         item.audio = pre.audioURL;
                         item.audioID = pre.audioID;
                     }
-                }
+                };
 				items.push(item);
                 prev = item.begin + item.dur;
                 init = 0 ;
@@ -118,21 +112,7 @@ angular.module('pmEditorApp')
     	};
 
 
-        //now arrange the audio files
-        var prevAudio;
-
-        for (var i = items.length - 1; i >= 0; i--) {
-            var item = items[i];
-            if (item.audio){
-                prevAudio = item;
-            }
-
-            if (prevAudio){
-                item.audio = prevAudio.audioURL;
-                item.audioID = prevAudio.audioID;
-            }
-        };
-
+      
 
     	$scope.PMObject.checkpoints = items;
         $scope.PMObject.startsIn = getPosAsString($scope.startsIn);
