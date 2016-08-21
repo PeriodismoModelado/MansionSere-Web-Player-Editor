@@ -9,7 +9,10 @@ main{
     height: 100vh;
     overflow: hidden;
 }
+body{
+  font-family: 'Varela Round', sans-serif;
 
+}
 #view{
     padding: 0em 1em;
     margin: 0;
