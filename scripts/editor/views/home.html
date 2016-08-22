@@ -1,20 +1,24 @@
 <h4> PM Editor 
-  <strong ng-cloak ng-show="idReady"><small>StoryId 
-  
+  <strong ng-cloak ng-show="idReady"><small> 
   <a ng-click="savePreview()" href="">{{storyID}}</a> </small></strong></h4>
   <div ng-hide="idReady">
   <h5> ¿Queres armar una historia nueva? </h5>
       <button ng-click="createNewStory()">Crear Nueva Historia</button>
-  <h5> ¿Tenes una guardada? </h5>
-   <div class="input-field col s12">
-    <h6 ng-cloak ng-show="noId">El ID parece no existir, verificalo.</h6>
-          <input placeholder="Escribi el ID"  ng-model="savedStoryID" type="text" class="validate">
-          <button ng-click="loadStory()">Cargar</button>
+      <div ng-show="activeProjects.length > 0">
+      <h5> Tenes {{activeProjects.length}} historia<span ng-show="activeProjects.length > 1">s</span> guardada<span ng-show="activeProjects.length > 1">s</span> </h5>
+       <div class="col s12" ng-repeat="item in activeProjects">
+            <h6><a href="" ng-click="loadStory(item.story)"> {{item.title}} <small> {{item.story}} </a>
+              <button ng-click="loadStory(item.story)">Cargar</button></h6>
         </div>
+      </div>
+
   </div>
 
 
 <div ng-cloak ng-show="idReady">
+  <h5>¿De que trata esta historia?</h5>
+  <input type="search" placeholder="Ponele un titulo." ng-change="saveModel()" ng-model="title"/>
+  <div ng-cloak ng-show="title">
   <h5>1. Modelo 3d </h5>
   <input type="search" placeholder="Escribi la URL de tu Modelo DAE " ng-model="model"/>
   <button ng-click="saveModel()">Actualizar</button>
@@ -52,6 +56,6 @@
   </ul>
   <h4> 4. Previsualizar </h4>
   <h5><button ng-click="saveExperience()">Recargar el modelo</button> <button ng-click="downloadJSON()">Bajar JSON.</button></h5>
-
+  </div>
 </div>
 

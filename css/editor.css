@@ -13,11 +13,18 @@ body{
   font-family: 'Varela Round', sans-serif;
 
 }
+button{
+    background:#3bbdb5;
+    color:#fefefe;
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
 #view{
     padding: 0em 1em;
     margin: 0;
     height: 100vh;
     overflow: scroll;
+    background-color:#f1f1f1;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {

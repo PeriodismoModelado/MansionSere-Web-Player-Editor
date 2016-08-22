@@ -10,10 +10,14 @@
 angular.module('pmEditorApp')
   .controller('HomeCtrl', function ($scope,FileSaver, ngAudio,Blob,$timeout,$document,$http) {
 
-
+    $scope.activeProjects = [];
     var latest = localStorage.getItem(key+'latest');
     if (latest){
         $scope.savedStoryID = latest;
+    }
+    var list = localStorage.getItem(key+'list');
+    if (list){
+        $scope.activeProjects = JSON.parse(list);
     }
     //DRDZLRE4DC99LKK
     $scope.createNewStory = function(){
@@ -21,9 +25,9 @@ angular.module('pmEditorApp')
          $scope.idReady = true;
     }
 
-    $scope.loadStory = function(){
+    $scope.loadStory = function(storyID){
         
-
+        $scope.savedStoryID = storyID;
          var pmSession = localStorage.getItem(key+ $scope.savedStoryID);
         if (!pmSession){
              $scope.noId = true;
@@ -54,6 +58,7 @@ angular.module('pmEditorApp')
                 $scope.checkpoints.push(cp);
 
             };
+            $scope.title = $scope.PMObject.title;
             localStorage.setItem(key+'latest',$scope.storyID);
             //DRDZLRE4DC99LKK
         }
@@ -82,6 +87,7 @@ angular.module('pmEditorApp')
 
 
     $scope.saveExperience = function(){
+
     	var pre;
     	var items = [];
         var average = 8000;
@@ -113,16 +119,17 @@ angular.module('pmEditorApp')
 
 
       
-
+        $scope.PMObject.title = $scope.title;
     	$scope.PMObject.checkpoints = items;
         $scope.PMObject.startsIn = getPosAsString($scope.startsIn);
-    	reloadScene($scope.PMObject);
+    	store();
+        reloadScene($scope.PMObject);
+        
     };
     $scope.saveModel = function(){
     	
     	$scope.PMObject.model = $scope.model;
-    	var pmString = JSON.stringify($scope.PMObject);
-        localStorage.setItem(key + $scope.storyID,pmString);
+    	store();
         //Reload experience (?)
     	reloadScene($scope.PMObject);
 
@@ -143,18 +150,51 @@ angular.module('pmEditorApp')
         var data = new Blob([pmString], {
           type: "text/json;charset=utf-8"});
         FileSaver.saveAs(data, filename);
-        localStorage.setItem(key+'latest',$scope.storyID);
-        localStorage.setItem(key + $scope.storyID,pmString);
+        store();
         
 
     };
 
+    var store = function(){
+        var pmString = JSON.stringify($scope.PMObject);
+        localStorage.setItem(key+'latest',$scope.storyID);
+        localStorage.setItem(key + $scope.storyID,pmString);
+
+        var actives = localStorage.getItem(key+'list');
+        list =  [];
+        if (actives){
+            list = JSON.parse(actives); 
+            var found = false;
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].story === $scope.storyID){
+                    list[i].title = $scope.title;
+                    found = true;
+                }
+            };
+            if (!found){
+                list.push({
+                    story:  $scope.storyID,
+                    title : $scope.title
+                });       
+            }
+        }else 
+        {
+            list.push({
+                story:  $scope.storyID,
+                title : $scope.title
+            });
+        }
+        localStorage.setItem(key+'list',JSON.stringify(list));
+        
+
+    }
+
     $scope.savePreview = function(){
         $scope.PMObject.model = $scope.model;
         var pmString = JSON.stringify($scope.PMObject);
-        localStorage.setItem(key + $scope.storyID,pmString);
+        store();
         window.open("play.html#"+  $scope.storyID);
-        localStorage.setItem(key+'latest',$scope.storyID);
+        
     }
 
 });
