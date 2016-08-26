@@ -2,6 +2,9 @@ body{
   font-family: 'Varela Round', sans-serif;
 
 }
+button.rojo{
+  background-color:#F00;
+}
 .container {
   max-width: 800px; }
 .header {

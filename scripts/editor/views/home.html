@@ -1,6 +1,8 @@
 <h4> PM Editor 
   <strong ng-cloak ng-show="idReady"><small> 
-  <a ng-click="savePreview()" href="">{{storyID}}</a> </small></strong></h4>
+  <a ng-click="saveExperience()" href="">{{storyID}}</a> </small></strong></h4>
+   <button ng-click="saveExperience()">Previsuaizar</button>
+
   <div ng-hide="idReady">
   <h5> ¿Queres armar una historia nueva? </h5>
       <button ng-click="createNewStory()">Crear Nueva Historia</button>
@@ -47,7 +49,7 @@
   Para elegirlo presiona <strong> SPACE </strong>
   <ul>
   	<li ng-repeat="cp in checkpoints">
-  		<h5>{{$index}}  <button ng-click='removeCheckpoint(cp,$index)'>Borrar</button></h5>
+  		<h5>{{$index}}  <small><button style="rojo" ng-click='removeCheckpoint(cp,$index)'>Borrar</button></small></h5>
   		<p><strong>X</strong>{{cp.pos.x}}</p>
   		<p><strong>Y</strong>{{cp.pos.y}}</p>
   		<p><strong>Z</strong>{{cp.pos.z}}</p>

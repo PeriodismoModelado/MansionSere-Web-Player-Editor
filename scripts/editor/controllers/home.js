@@ -76,7 +76,7 @@ angular.module('pmEditorApp')
 
     $scope.removeCheckpoint = function(item,i){
         var pos = $scope.checkpoints.indexOf(item);
-        $scope.checkpoints = $scope.checkpoints.splice(i, 1);
+        $scope.checkpoints.splice(i, 1);
 
     }
     $scope.loadAudio = function(item){
