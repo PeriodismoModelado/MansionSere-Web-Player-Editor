@@ -47,7 +47,7 @@
   Para elegirlo presiona <strong> SPACE </strong>
   <ul>
   	<li ng-repeat="cp in checkpoints">
-  		<h5>{{$index}}</h5>
+  		<h5>{{$index}}  <button ng-click='removeCheckpoint(cp,$index)'>Borrar</button></h5>
   		<p><strong>X</strong>{{cp.pos.x}}</p>
   		<p><strong>Y</strong>{{cp.pos.y}}</p>
   		<p><strong>Z</strong>{{cp.pos.z}}</p>
