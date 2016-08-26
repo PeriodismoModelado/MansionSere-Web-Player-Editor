@@ -5,6 +5,10 @@
 	</a-entity>
 	<a-entity id="player">
 		<a-camera id="pm-camera"  position="{{ startsIn }}">
+{% if soundtrack %}
+		<a-entity sound="src: {{soundtrack}}; autoplay: true; loop:true">
+					  </a-entity>
+					{% endif %}
 			{% for checkpoint in checkpoints %}
 			   {% if checkpoint.audio %}
 			   		<a-animation  id="{{checkpoint.audioID}}Play" begin="{{ checkpoint.begin }}"  dur="1" attribute="visibility" to="true"></a-animation>

@@ -10,6 +10,11 @@
 angular.module('pmEditorApp')
   .controller('HomeCtrl', function ($scope,FileSaver, ngAudio,Blob,$timeout,$document,$http) {
 
+    $scope.soundtrack = {
+        audioID:'',
+        audioURL:'',
+        audio:{}
+    }
     $scope.activeProjects = [];
     var latest = localStorage.getItem(key+'latest');
     if (latest){
@@ -58,6 +63,11 @@ angular.module('pmEditorApp')
                 $scope.checkpoints.push(cp);
 
             };
+            if ($scope.PMObject.soundtrack){
+                $scope.soundtrack.audioURL = $scope.PMObject.soundtrack;
+                $scope.soundtrack.audioID = $scope.PMObject.soundtrackID;
+                $scope.soundtrack.audio = ngAudio.load($scope.soundtrack.soundtrackURL);
+            }
             $scope.title = $scope.PMObject.title;
             localStorage.setItem(key+'latest',$scope.storyID);
             //DRDZLRE4DC99LKK
@@ -78,16 +88,15 @@ angular.module('pmEditorApp')
     	});
     };
     $scope.startsIn= {
-        x:33,
-        y:22,
-        z:33
+        x:2,
+        y:2,
+        z:2
     };
-    
 
 
 
     $scope.saveExperience = function(){
-
+        $scope.PMObject.model = $scope.model;
     	var pre;
     	var items = [];
         var average = 8000;
@@ -118,24 +127,18 @@ angular.module('pmEditorApp')
     	};
 
 
-      
+        if ($scope.soundtrack){
+            $scope.PMObject.soundtrack = $scope.soundtrack.audioURL;
+        }
         $scope.PMObject.title = $scope.title;
     	$scope.PMObject.checkpoints = items;
+
         $scope.PMObject.startsIn = getPosAsString($scope.startsIn);
     	store();
         reloadScene($scope.PMObject);
         
     };
-    $scope.saveModel = function(){
-    	
-    	$scope.PMObject.model = $scope.model;
-    	store();
-        //Reload experience (?)
-    	reloadScene($scope.PMObject);
-
-
-    }
-
+    
 
     $scope.PMObject = {
       model:'/models/model.dae',
