@@ -50,9 +50,11 @@
   <ul>
   	<li ng-repeat="cp in checkpoints">
   		<h5>{{$index}}  <small><button style="rojo" ng-click='removeCheckpoint(cp,$index)'>Borrar</button></small></h5>
-  		<p><strong>X</strong>{{cp.pos.x}}</p>
-  		<p><strong>Y</strong>{{cp.pos.y}}</p>
-  		<p><strong>Z</strong>{{cp.pos.z}}</p>
+  		<p><strong>(X) </strong>{{cp.pos.x}}</p>
+  		<p><strong>(Y) </strong>{{cp.pos.y}}</p>
+  		<p><strong>(Z) </strong>{{cp.pos.z}}</p>
+      <h6> Duracion 
+      <input placeholder="¿Cuantos Segundos Dura?"  ng-model="cp.duration" type="text" ></h6>
       <h6> Audio </h6>
       <div class="input-field col s12">
         <input placeholder="Url"  ng-model="cp.audioURL" type="text" >

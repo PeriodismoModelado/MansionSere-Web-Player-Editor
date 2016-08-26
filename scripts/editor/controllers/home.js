@@ -50,6 +50,7 @@ angular.module('pmEditorApp')
                 var check = $scope.PMObject.checkpoints[i];
                 var cp = {
                     pos:getStringAsPos(check.from),
+                    duration: parseInt(check.dur)/1000,
                     text:'',
                 };
                 
@@ -86,9 +87,11 @@ angular.module('pmEditorApp')
         
     }
   	$scope.checkpoints = [];
+    var average = 8;
     $scope.saveCheckpoint = function(p){
     	$scope.checkpoints.push({
     		pos:p,
+            duration:average,
     		text:'',
     	});
     };
@@ -104,7 +107,6 @@ angular.module('pmEditorApp')
         $scope.PMObject.model = $scope.model;
     	var pre;
     	var items = [];
-        var average = 8000;
         var init = 3000;
         var prev =0;
     	for (var i = 0; i < $scope.checkpoints.length; i++) {	
@@ -112,7 +114,7 @@ angular.module('pmEditorApp')
 			if (pre){
                 var item = {
                   begin:init + prev,
-                  dur:average,
+                  dur:current.duration*1000,
                   from: getPosAsString(pre.pos),
                   to: getPosAsString(current.pos),
                 };
